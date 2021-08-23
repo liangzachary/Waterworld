@@ -1,0 +1,7 @@
+ add sleep functions to story
+ uncomment sleep
+ add player stats function after fights
+ replace weird fonts
+ force player to buy weapon remove health potion
+ display money at shop
+ remove debug from shop
