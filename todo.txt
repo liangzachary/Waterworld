@@ -1,7 +1,30 @@
  add sleep functions to story
  uncomment sleep
- add player stats function after fights
- replace weird fonts
+ comment old fonts
  force player to buy weapon remove health potion
+ scene
+
+
+
+
+
+
+
+testing
+ make run away possible
+
+ heal back to hp before fight when rematch
+COMPLETED
+ replace weird fonts
+ 
  display money at shop
+
+ add player stats function after fights
+
+ give fish (money)
+ 
+ create option to edit text speed
+ 
+ display monster stats.
+ 
  remove debug from shop

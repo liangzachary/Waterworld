@@ -1,3 +1,4 @@
+
 //const readlinesync.question = require('readlinesync.question');
 const readlinesync = require('readline-sync')
 
@@ -188,12 +189,12 @@ var itemsdetails = {
     "maxdamage": 5,
     "healing": 0,
   },
-  "health potion" : {
-    "type":"item",
-    "mindamage": 0,
-    "maxdamage": 0,
-    "healing": 5,
-  },
+  // "health potion" : {
+  //   "type":"item",
+  //   "mindamage": 0,
+  //   "maxdamage": 0,
+  //   "healing": 5,
+  // },
   "mace" : {
     "type":"weapon",
     "mindamage": 3,
@@ -283,13 +284,51 @@ var thekid = {
 }
 
 // Add the sleep function here
-
-function sleep(ms) {
+var textspeed = 100
+var x = 10 // x = 1 normal speed
+function sleep(ms = textspeed) {
   return new Promise((resolve) => {
-    setTimeout(resolve, ms/100); // changed for demo
+    setTimeout(resolve, ms/x); // changed for demo
   });
 }
 
+async function characterstats() {
+  await sleep(500)
+  console.log(".")
+  //  await sleep(500)
+  console.log(".")
+//  await sleep(500)
+  console.log(".")
+//  await sleep(500)
+  console.log(".")
+//  await sleep(500)
+  console.log("hello " + player["name"])
+//  await sleep(1000)
+  console.log("your attack is " + player["attack"])
+// await sleep(1000)
+  console.log("you have " + player["money"] + " shells.")
+//  await sleep(1000)
+  console.log("your max health is " + player["maxhp"])
+//  await sleep(1000)
+  console.log("your current health is " + player["hp"])
+//  await sleep(1000)
+  if (player["maxhp"] === player["hp"]){
+    console.log("nice and healthy")
+  }else{
+    console.log("just walk it off")
+  }
+//  await sleep(500)
+  console.log(".")
+//  await sleep(500)
+
+  console.log(".")
+//  await sleep(500)
+
+  console.log(".")
+//  await sleep(500)
+  console.log(".")
+//  await sleep(500)
+}
 async function choosecharacter() {
   // DONE 1. print the name of all saved characters
   // 2. ask the user which character is the one they want to play
@@ -300,8 +339,8 @@ async function choosecharacter() {
   // Ask the player if they want to start a new game, or continue a previous game
 
   var playername = readlinesync.question("Would you like to " +
-  "A. Start a new game " + 
-  "B. Continue from a save")
+  "A. Start a new game or " + 
+  "B. Continue from a save: ")
   while (playername !== "A" && playername !== "B"){
     var playername = readlinesync.question("Type A or B.")
   }
@@ -312,6 +351,60 @@ async function choosecharacter() {
     players[name] = baseplayer
     write(players)
     player = players[name]
+    console.log("There are three text speed that you may use hero.")
+    console.log("These are what the text speeds looks like:")
+    await sleep(1000)
+    console.log("Fast,")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log("Medium,")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log("And slow,")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    console.log(".")
+    await sleep(1000)
+    var speed = readlinesync.question("Would you like to play at fast, medium, or slow speed?")
+    while (speed !== "fast" && speed !== "medium" && speed !== "slow"){
+      var speed = readlinesync.question("Type either fast, medium, or slow.")
+    }
+    if (speed === "fast"){
+        textspeed = 1000
+    }
+    if (speed === "medium"){
+        textspeed = 1500
+    }
+    if (speed === "slow"){
+        textspeed = 2000
+    }
+
+
   }
   if (playername === "B"){
     var playerids = Object.keys(players)
@@ -368,39 +461,7 @@ async function intro() {
   console.log("You pass out.")
   // 1. Write an introduction for the game 
   // 2. Print the status of the characterf
-//  await sleep(500)
-  console.log(".")
-//  await sleep(500)
-  console.log(".")
-//  await sleep(500)
-  console.log(".")
-//  await sleep(500)
-  console.log(".")
-//  await sleep(500)
-  console.log("hello " + player["name"])
-//  await sleep(1000)
-  console.log("your attack is " + player["attack"])
-//  await sleep(1000)
-  console.log("your max health is " + player["maxhp"])
-//  await sleep(1000)
-  console.log("your current health is " + player["hp"])
-//  await sleep(1000)
-  if (player["maxhp"] === player["hp"]){
-    console.log("nice and healthy")
-  }else{
-    console.log("just walk it off")
-  }
-//  await sleep(500)
-  console.log(".")
-//  await sleep(500)
-
-  console.log(".")
-//  await sleep(500)
-
-  console.log(".")
-//  await sleep(500)
-  console.log(".")
-//  await sleep(500)
+  await characterstats()
 
   player["state"] = player["state"] + 1
   write(players)
@@ -526,24 +587,8 @@ async function fight1() {
     player["money"] = player["money"] + 500
   }
   
+  await characterstats()
 
-  console.log(".")
-  console.log(".")
-  console.log(".")
-  console.log(".")
-  console.log("hello " + player["name"])
-  console.log("your attack is " + player["attack"])
-  console.log("your max health is " + player["maxhp"])
-  console.log("your current health is " + player["hp"])
-  if (player["maxhp"] === player["hp"]){
-    console.log("nice and healthy")
-  }else{
-    console.log("just walk it off")
-  }
-  console.log(".")
-  console.log(".")
-  console.log(".")
-  console.log(".")
   player["state"] = player["state"] + 1
   write(players)
 }
@@ -600,24 +645,9 @@ async function scene3() {
   console.log("You charge, howling, towards the scoundrels.")
   console.log("They turn 180° as you bash them.")
   console.log("The scoundrels scatter scurrying on all fours away.")
-  console.log(".")
-  console.log(".")
 
-  console.log(".")
-  console.log(".")
-  console.log("hello " + player["name"])
-  console.log("your attack is " + player["attack"])
-  console.log("your max health is " + player["maxhp"])
-  console.log("your current health is " + player["hp"])
-  if (player["maxhp"] === player["hp"]){
-    console.log("nice and healthy")
-  }else{
-    console.log("just walk it off")
-  }
-  console.log(".")
-  console.log(".")
-  console.log(".")
-  console.log(".")
+  await characterstats()
+
   console.log("The kid picks himself up from the ground.")
   console.log("I owe thou my life Mr... What is your name?")
   console.log("Wow! You are the legendary " + player["name"] + "? Then I shall accompany you on your journey!") 
@@ -635,7 +665,7 @@ async function scene3() {
   console.log(".")
   console.log(".")
   console.log(".")
-  console.log("The child hands you a coin which you pocket.")
+  console.log("The child hands you a shell which you pocket.")
   console.log("Go to the shop over there. The shop owner is a big fan of heroes and will give you a powerful weapon.")
   player["state"] = player["state"] + 1
   write(players)
@@ -662,19 +692,18 @@ async function scene4() {
 async function entershop() {
   // 1. Display the items in the shop and the costs
   var items = Object.keys(shop)
-  console.log(items)
   console.log("Look here hero. Today we have these items available.")
+  console.log("You have " + player["money"] + " shells.")
   var itemscount = items.length
-  console.log(itemscount)
   for (var i = 0; i < itemscount; i++) {
     console.log(i + " - a/an "+ items[i] +" which costs " + shop[items[i]])
   }
   
-  var itembuy = readlinesync.question("Enter 0, 1, 2, or 3 to purchase the item respective to that number or enter 4 to leave the shop.")
+  var itembuy = readlinesync.question("Enter 0, 1, or 2 to purchase the item respective to that number or enter 4 to leave the shop.")
   while (itembuy !== "0" && itembuy !== "1" && itembuy !== "2" && itembuy !== "3" && itembuy !== "4"){
-    var itembuy = readlinesync.question("Please type one of the 0, 1, 2, 3, or 4.")
+    var itembuy = readlinesync.question("Please type one of the 0, 1, 2, or 4.")
   }
-  if (itembuy === "0"){
+  if (itembuy === "0" || itembuy === "1" || itembuy === "2"){
     if (player["money"] >= shop[items[Number(itembuy)]]){
       player["items"].push(items[Number(itembuy)])
       player["money"] = player["money"] - shop[items[Number(itembuy)]]
@@ -687,49 +716,11 @@ async function entershop() {
       console.log("Leave my establishment ye broke scoundrel")
     }
   }
-  if (itembuy === "1"){
-    if (player["money"] >= shop[items[Number(itembuy)]]){
-      player["items"].push(items[Number(itembuy)])
-      player["money"] = player["money"] - shop[items[Number(itembuy)]]
-      console.log("Thank you for purchasing a/an " + items[Number(itembuy)])
-    }
-    else{ 
-      console.log("You're broke please leave.")
-    }
-    if (player["money"] === 0){
-      console.log("Leave my establishment ye broke scoundrel")
-    }
-  }
-  if (itembuy === "2"){ 
-    if (player["money"] >= shop[items[Number(itembuy)]]){
-      player["items"].push(items[Number(itembuy)])
-      player["money"] = player["money"] - shop[items[Number(itembuy)]]
-      console.log("Thank you for purchasing a/an " + items[Number(itembuy)])
-    }
-    else{ 
-      console.log("You're broke please leave.")
-    }
-    if (player["money"] === 0){
-      console.log("Leave my establishment ye broke scoundrel")
-    }
-  }
-  if (itembuy === "3"){
-    if (player["money"] >= shop[items[Number(itembuy)]]){
-      player["items"].push(items[Number(itembuy)])
-      player["money"] = player["money"] - shop[items[Number(itembuy)]]
-      console.log("Thank you for purchasing a/an " + items[Number(itembuy)])
-    }
-    else{ 
-      console.log("You're broke please leave.")
-    }
-    if (player["money"] === 0){
-      console.log("Leave my establishment ye broke scoundrel")
-    }
-  }
   if (itembuy === "4"){
     console.log("You leave the shop.")
   }
   console.log("You currently own: " + player["items"])
+  console.log("You currently have: " + player["money"] + " shells.")
 
   // 3. Check that the player has enough money to buy the item
   // if statement to check player money vs. the cost
@@ -808,7 +799,7 @@ async function scene5() {
         console.log("You and the kid walk through the trees to a giant lake where creatures of all kinds and sizes drink from the water.")
         console.log("You drink water from the lake with your hands in a cup.")
         console.log("The sweet taste of the water fills you with energy and you feel your wounds closing and scabs healing.")
-        player["hp"] = max["hp"]
+        player["hp"] = player["maxhp"]
         console.log("You walk back to the path feeling healthy.")
       }
     }
@@ -817,7 +808,7 @@ async function scene5() {
       var rng3 = randomNumber(0,6)
       if (rng3 == 1){
         console.log("A beggar approaches you.")
-        console.log("He begs for some money so you generously give him 100 coins.")
+        console.log("He begs for some money so you generously give him 100 shells.")
         player["money"] = player["money"] - 100
       }
       if (rng3 == 2){
@@ -828,7 +819,7 @@ async function scene5() {
       }
       if (rng3 == 3){
         console.log("A beggar approaches you.")
-        console.log("He begs for some money so you generously give him 100 coins.")
+        console.log("He begs for some money so you generously give him 100 shells.")
         console.log("The beggar turns out to be a millionare in disguise and repays you tenfold.")
         player["money"] = player["money"] - 1000
 
@@ -837,15 +828,15 @@ async function scene5() {
         console.log("You meet a clown from a travelling circus.")
         console.log("The clown offers to show you his act to which you happily accept.")
         console.log("You both go into a tent when suddenly, the lights turn off and a music box begins to sing.")
-        console.log("You look down to see the clowns clothes with no clown and turn to see him lunging towards you.")
+        console.log("You look down to see the clowns clothes with no clown inside and turn to see him lunging towards you.")
         await combt2()
       }
       if (rng3 == 5){
         console.log("A beggar approaches you.")
-        console.log("He begs for some money so you generously give him 100 coins.")
+        console.log("He begs for some money so you generously give him 100 shells.")
         console.log("The beggar acts like he is satisfied and begins to walk away.")
-        console.log("You feel around a breeze blow by your body and when feeling your waist you realize your coin sack has dissapeared.")
-        console.log("You lose 100 coins.")
+        console.log("You feel around a breeze blow by your body and when feeling your waist you realize your shell sack has dissapeared.")
+        console.log("You lose 100 shells.")
         player["money"] = player["money"] - 1000
       }
       if (rng3 == 6){
@@ -853,11 +844,10 @@ async function scene5() {
         console.log("Might you be the great hero who is rumored to be our savior?")
         console.log("I don't wamt to come off as greedy but I haven't sold a single thing for over a decade due to the tragic lack of heroes.")
         console.log("Let me show you what I have to sell.")
+        await characterstats()
         var items = Object.keys(shop2)
-        console.log(items)
         console.log("Here's what I have on me.")
         var itemscount = items.length
-        console.log(itemscount)
         for (var i = 0; i < itemscount; i++) {
         console.log(i + " - a/an "+ items[i] +" which costs " + shop2[items[i]])
         }
@@ -867,12 +857,11 @@ async function scene5() {
           var itembuy2 = readlinesync.question("Please type one of the 0, 1, 2, 3, or 4.")
         }
         if (itembuy2 === "0" || itembuy2 === "1" || itembuy2 === "2" || itembuy2 === "3" || itembuy2 === "4"){
-          console.log(shop2[items[Number(itembuy2)]])
-          console.log(Number(player["money"]))
-          if (player["money"] >= shop2[items[Number(itembuy2)]]){
+          if (Number(player["money"]) >= shop2[items[Number(itembuy2)]]){
             player["items"].push(items[Number(itembuy2)])
             player["money"] = player["money"] - shop2[items[Number(itembuy2)]]
             console.log("Bless you hero. Enjoy your new " + items[Number(itembuy2)])
+            console.log("You currently have:" + player["money" + "shells."])
             write(players)
           }
         }
@@ -882,7 +871,6 @@ async function scene5() {
 
       }
     }
-    //Enemy
     if (encounter >= 16 && encounter <= 21){
       var rng = randomNumber(0,7)
       if (rng == 1){
@@ -1005,34 +993,43 @@ async function scene6(){
 
 
   var key = 2
-  var enemys = gatekeeping.Gatekeeper
+  var playercopy = createEnemy(player)
+  var enemycopy = createEnemy(gatekeeping.Gatekeeper)
+  var enemy = createEnemy(gatekeeping.Gatekeeper)
   var fighttt = "1"
   while (fighttt === "1"){
     fighttt = "0"
     var playercopy = createEnemy(player)
-    var enemyhealth = enemys["maxhp"]
+
     
     console.log("You are forced to defend yourself from the gatekeeper of Florida")
-  
+    console.log(".")
     console.log("The fight begins.")
-    
+    await enemystats(gatekeeping.Gatekeeper)
   
     console.log("You lunge into battle.")
     
+    var options = []
     for (var i = 0; i < player["items"].length; i++) {
+      options.push(i)
       console.log(i + " - " + player["items"][i])
     }
     var askitem = readlinesync.question("Would you like to use any of these items?")
-    console.log(askitem)
+
+
     // choose 0, 1, or 2 - index
+
+    while (!(Number(askitem) in options) || askitem === ""){
+      var askitem = readlinesync.question("Which item would you like to use?")
+    }
     var itemkey = player["items"][Number(askitem)]
     console.log(itemkey)
     var chosenitem = itemsdetails[itemkey]
     console.log(chosenitem)
-    while (player["hp"] > 0 && enemyhealth > 0){
+    while (player["hp"] > 0 && enemy["health"] > 0){
       
-      var fightt = readlinesync.question("Type 1 for you and the kid strike with your current weapons or type 2 to run away or type 3 to use an item")
-      while (fightt !=="1" && fightt !=="2" && fightt !== "3"){
+      var fightt = readlinesync.question("Type 1 for you and the kid strike with your current weapons or type 2 to run away")
+      while (fightt !=="1" && fightt !=="2"){
         var fightt = readlinesync.question("1 for you and the kid to strike with your current weapon or type 2 to run away")
       }
     
@@ -1041,28 +1038,26 @@ async function scene6(){
         var damage = randomNumber(Number(chosenitem.mindamage), Number(chosenitem.maxdamage))*Number(baseplayer.attack)
         *randomNumber(2,4)
         var thekiddamage = randomNumber(Number(itemsdetails["mace"].mindamage), Number(itemsdetails["mace"].maxdamage) * Number(thekid.attack) * randomNumber(2,3))
-        console.log(damage)
-        console.log(thekiddamage)
 
-        enemyhealth = enemyhealth - damage
-        enemyhealth = enemyhealth - thekiddamage
+
+        enemy["hp"] = enemy["hp"] - damage
+        enemy["hp"] = enemy["hp"] - thekiddamage
         console.log("You did " + damage + " to the " + "gatekeeper" + "!")
         console.log("The kid did " + damage + " to the " + "gatekeeper" + "!")
         enemydamage = Math.ceil(12  * 0.8 * 10 * randomNumber(0,3))
-        console.log(enemydamage)
-        if (enemyhealth > 0){
+        if (enemy["hp"] > 0){
           player["hp"] = player["hp"] - enemydamage
     
-          console.log("You have " + player["hp"] + " health " + "and the " + "gatekeeper" + " enemy has " + enemyhealth + " health")
+          console.log("You have " + player["hp"] + " health " + "and the " + "gatekeeper" + " enemy has " + enemy["hp"] + " health")
 
 
         
         }
-        if (enemyhealth < 1){
+        if (enemy["hp"] < 1){
           console.log("YOU WON! The " + "gatekeeper" + " has been defeated!")
-          var plusmoney = randomNumber(100, 300)
+          var plusmoney = randomNumber(500, 600)
           player["money"] = player["money"] + 
-          console.log("You found " + plusmoney + " in the dead " + "gatekeeper" +"'s body!")
+          console.log("You found " + plusmoney + "shells in the dead " + "gatekeeper" +"'s body!")
           console.log("You also find the key to the gate of Florida!")
           var key = 1
         }
@@ -1071,6 +1066,7 @@ async function scene6(){
           var death = readlinesync.question("Would you like to try again, 1, or would you like to continue onward, 2.")
           if (death === "1"){
             player = createEnemy(playercopy)
+            enemy = createEnemy(enemycopy)
 
             
             
@@ -1078,6 +1074,9 @@ async function scene6(){
           }
           if (death === "2"){
             player =  createEnemy(playercopy)
+            enemy = createEnemy(enemycopy)
+            console.log("You run away.")
+            return
 
 
 
@@ -1087,29 +1086,29 @@ async function scene6(){
       }
       if (fightt === "2"){
         console.log("You run away.")
-    
+        return
       }
-      if (fightt === "3"){
-        for (var i = 0; i < player["items"].length; i++) {
-        console.log(i + " - " + player["items"][i])
-        }
-        var askitem = readlinesync.question("Would you like to use any of these items?")
-        console.log(askitem)
-        var itemkey = player["items"][Number(askitem)]
-        console.log(itemkey)
-        var chosenitem = itemsdetails[itemkey]
-        console.log(chosenitem)
-        if(chosenitem.healing <= 0){
-          console.log("Please choose a different item.")
-          var askitem = readlinesync.question("Would you like to use any of these items?")
-          console.log(askitem)
+      // if (fightt === "3"){
+      //   for (var i = 0; i < player["items"].length; i++) {
+      //   console.log(i + " - " + player["items"][i])
+      //   }
+      //   var askitem = readlinesync.question("Would you like to use any of these items?")
+      //   console.log(askitem)
+      //   var itemkey = player["items"][Number(askitem)]
+      //   console.log(itemkey)
+      //   var chosenitem = itemsdetails[itemkey]
+      //   console.log(chosenitem)
+      //   if(chosenitem.healing <= 0){
+      //     console.log("Please choose a different item.")
+      //     var askitem = readlinesync.question("Would you like to use any of these items?")
+      //     console.log(askitem)
           
-        }
-        else{
-          console.log("You used the " + askitem + ".")
-          player["hp"] = player["hp"] + askitem.healing
-        }
-      }
+        // }
+        // else{
+        //   console.log("You used the " + askitem + ".")
+        //   player["hp"] = player["hp"] + askitem.healing
+        // }
+      // }
 
       
 
@@ -1198,6 +1197,7 @@ async function scene7(){
 
 
 async function quiz(){
+  console.log(".")
   console.log("'Ahem. What is the first letter of The Alphabet?'")
   console.log("1. A, 2. T, 3. B, 4. All of the above, 5. This is a fictional world why do there be english.")
   var right = 1
@@ -1477,18 +1477,15 @@ async function quiz(){
     console.log("Are you ready to face the wizard?")
     var what = readlinesync.question("1.Yes., 2. No.")
     while (what !== "1" && what !== "2"){
-      var what = readlinesync.question("1, 2, 3, 4, or 5?")
+      var what = readlinesync.question("1 or 2")
     }
     if (what === "1"){
-      console.log("Yes.")
       var done = 1
     }
     if (what === "2"){
-      console.log("No.")
       var done = 0
     } 
   else{
-
   }
   if (right === 3){
     var keepgoing = readlinesync.question("You lost... that's rough buddy. Want to try again? Type Yes to try again or type No to wimp out.")
@@ -1498,7 +1495,9 @@ async function quiz(){
       await quiz()
     }
     if (keepgoing === "No"){
-
+      console.log("Get outta Florida!")
+      console.log("No time for losers off you go now.")
+      player["state"] = 6
     }
   }
   if (done = 1){
@@ -1508,6 +1507,7 @@ async function quiz(){
     player["maxhp"] = player["maxhp"] + 200
     console.log("I have given you 1 attack and 200 health.")
     console.log("Now go and save the world.")
+    await characterstats()
     
 
   }
@@ -1565,7 +1565,6 @@ async function game() {
  if (player["state"] === 4) {
    await scene4()
    await entershop()
-   await combt()
  }
  if (player["state"] === 5) {
    await scene5()
@@ -1604,7 +1603,7 @@ game()
 //Ends when everyone fighting dies
 async function combt(enemy = randomenemy()){
  // var enemy = randomenemy()
-  console.log(enemy)
+  
   var fighttt = "1"
   while (fighttt === "1"){
     fighttt = "0"
@@ -1617,105 +1616,113 @@ async function combt(enemy = randomenemy()){
     }
     if (fight === "yes"){
       console.log("The fight begins.")
+      await enemystats(enemy)
       
     
       console.log("You lunge into battle.")
       
+      var options = []
       for (var i = 0; i < player["items"].length; i++) {
+        options.push(i)
         console.log(i + " - " + player["items"][i])
       }
       var askitem = readlinesync.question("Would you like to use any of these items?")
-      console.log(askitem)
+      
       // choose 0, 1, or 2 - index
+      while (!(Number(askitem) in options) || askitem === ""){
+      var askitem = readlinesync.question("Which item would you like to use?")
+      }
       var itemkey = player["items"][Number(askitem)]
       console.log(itemkey)
       var chosenitem = itemsdetails[itemkey]
       console.log(chosenitem)
-      while (player["hp"] > 0 && enemy["hp"] > 0){
-        var fightt = readlinesync.question("Type 1 for you and the kid strike with your current weapons or type 2 to run away or type 3 to use an item")
-        while (fightt !=="1" && fightt !=="2" && fightt !== "3"){
-          var fightt = readlinesync.question("1 for you and the kid to strike with your current weapon or type 2 to run away")
-        }
-      
-      
-        if (fightt === "1"){
-          var damage = randomNumber(Number(chosenitem.mindamage), Number(chosenitem.maxdamage))*Number(baseplayer.attack)
-          *randomNumber(2,4)
-          var thekiddamage = randomNumber(Number(itemsdetails["mace"].mindamage), Number(itemsdetails["mace"].maxdamage) * Number(thekid.attack) * randomNumber(2,3))
-          console.log(damage)
-          console.log(thekiddamage)
-          enemy["hp"] = enemy["hp"] - damage
-          enemy["hp"] = enemy["hp"] - thekiddamage
-          console.log("You did " + damage + " to the " + enemy["name"] + "!")
-          console.log("The kid did " + damage + " to the " + enemy["name"] + "!")
-          enemydamage = Math.ceil(enemy["attack"]  * 0.8 * enemy["attack"] * randomNumber(0,3))
-          console.log(enemydamage)
-          if (enemy["hp"] > 0){
-            player["hp"] = player["hp"] - enemydamage
-      
-            console.log("You have " + player["hp"] + " health " + "and the " + enemy["name"] + " enemy has " + enemy["hp"] + " health")
+      while (continuee === "yes"){
+        var continuee = "yes"
+        while (player["hp"] > 0 && enemy["hp"] > 0){
+          var fightt = readlinesync.question("Type 1 for you and the kid strike with your current weapons or type 2 to run away")
+          while (fightt !=="1" && fightt !=="2"){
+            var fightt = readlinesync.question("1 for you and the kid to strike with your current weapon or type 2 to run away")
+          }
+        
+        
+          if (fightt === "1"){
+            var damage = randomNumber(Number(chosenitem.mindamage), Number(chosenitem.maxdamage))*Number(baseplayer.attack)
+            *randomNumber(2,4)
+            var thekiddamage = randomNumber(Number(itemsdetails["mace"].mindamage), Number(itemsdetails["mace"].maxdamage) * Number(thekid.attack) * randomNumber(2,3))
+            enemy["hp"] = enemy["hp"] - damage
+            enemy["hp"] = enemy["hp"] - thekiddamage
+            console.log("You did " + damage + " to the " + enemy["name"] + "!")
+            console.log("The kid did " + damage + " to the " + enemy["name"] + "!")
+            enemydamage = Math.ceil(enemy["attack"]  * 0.8 * enemy["attack"] * randomNumber(0,3))
+            if (enemy["hp"] > 0){
+              player["hp"] = player["hp"] - enemydamage
+        
+                console.log("You have " + player["hp"] + " health " + "and the " + enemy["name"] + " enemy has " + enemy["hp"] + " health")
 
+
+            
+            }
+            if (enemy["hp"] < 1){
+              console.log("YOU WON! The " + enemy["name"] + " has been defeated!")
+              var plusmoney = randomNumber(enemy["mingold"], enemy["maxgold"])
+              player["money"] = player["money"] + 
+              console.log("You found " + plusmoney + " in the dead " + enemy["name"] +"'s body!")
+              await characterstats()
+            }
+            if (player["hp"]< 1){
+              console.log("You lost. The " + enemy["name"] + " continues it's rampage.")
+              var death = readlinesync.question("Would you like to try again, 1, or would you like to continue onward, 2.")
+              if (death === "1"){
+                player = createEnemy(playercopy)
+                enemy = createEnemy(enemycopy)
+                
+                
+                var fighttt = "1"
+              }
+              if (death === "2"){
+                player =  createEnemy(playercopy)
+                enemy = createEnemy(enemycopy)
+                var continuee = "no"
+                return
+
+
+
+
+              }
+            }
+          }
+          if (fightt === "2"){
+            console.log("You run away.")
+            return
+          }
+          // if (fightt === "3"){
+          // for (var i = 0; i < player["items"].length; i++) {
+          // console.log(i + " - " + player["items"][i])
+          // }
+        //   var askitem = readlinesync.question("Would you like to use any of these items?")
+        //   console.log(askitem)
+        //   var itemkey = player["items"][Number(askitem)]
+        // console.log(itemkey)
+        //   var chosenitem = itemsdetails[itemkey]
+        //   console.log(chosenitem)
+        //   if(chosenitem.healing <= 0){
+        //     console.log("Please choose a different item.")
+        //     var askitem = readlinesync.question("Would you like to use any of these items?")
+        //     console.log(askitem)
+            
+        //   }
+        //   else{
+        //     console.log("You used the " + askitem + ".")
+        //     player["hp"] = player["hp"] + askitem.healing
+        //   }
+          
 
           
-          }
-          if (enemy["hp"] < 1){
-            console.log("YOU WON! The " + enemy["name"] + " has been defeated!")
-            var plusmoney = randomNumber(enemy["mingold"], enemy["maxgold"])
-            player["money"] = player["money"] + 
-            console.log("You found " + plusmoney + " in the dead " + enemy["name"] +"'s body!")
-          }
-          if (player["hp"]< 1){
-            console.log("You lost. The " + enemy["name"] + " continues it's rampage.")
-            var death = readlinesync.question("Would you like to try again, 1, or would you like to continue onward, 2.")
-            if (death === "1"){
-              player = createEnemy(playercopy)
-              enemy = createEnemy(enemycopy)
-              
-              
-              var fighttt = "1"
-            }
-            if (death === "2"){
-              player =  createEnemy(playercopy)
-              enemy = createEnemy(enemycopy)
-
-
-
-
-            }
-          }
-        }
-        if (fightt === "2"){
-          console.log("You run away.")
-      
-        }
-        if (fightt === "3"){
-        for (var i = 0; i < player["items"].length; i++) {
-        console.log(i + " - " + player["items"][i])
-        }
-        var askitem = readlinesync.question("Would you like to use any of these items?")
-        console.log(askitem)
-        var itemkey = player["items"][Number(askitem)]
-       console.log(itemkey)
-        var chosenitem = itemsdetails[itemkey]
-        console.log(chosenitem)
-        if(chosenitem.healing <= 0){
-          console.log("Please choose a different item.")
-          var askitem = readlinesync.question("Would you like to use any of these items?")
-          console.log(askitem)
+        //   }
           
-        }
-        else{
-          console.log("You used the " + askitem + ".")
-          player["hp"] = player["hp"] + askitem.healing
-        }
-        
 
-        
-        }
-        
-
+      }
     }
-
       
     }
     if (fight === "no"){
@@ -1723,11 +1730,10 @@ async function combt(enemy = randomenemy()){
       console.log()
     }
   }
-  
+    await characterstats()
 }
 async function combt2(){
   var enemy = randomenemy()
-  console.log(enemy)
   var fighttt = "1"
   while (fighttt === "1"){
     fighttt = "0"
@@ -1740,24 +1746,28 @@ async function combt2(){
     }
     if (fight === "yes"){
       console.log("The fight begins.")
-      
+      await enemystats(enemy)
     
       console.log("You lunge into battle.")
-      
+      var options = []
       for (var i = 0; i < player["items"].length; i++) {
+        options.push(i)
         console.log(i + " - " + player["items"][i])
       }
       var askitem = readlinesync.question("Would you like to use any of these items?")
-      console.log(askitem)
+
       // choose 0, 1, or 2 - index
+      while (!(Number(askitem) in options) || askitem === ""){
+      var askitem = readlinesync.question("Which item would you like to use?")
+      }
       var itemkey = player["items"][Number(askitem)]
       console.log(itemkey)
       var chosenitem = itemsdetails[itemkey]
       console.log(chosenitem)
 
       while (player["hp"] > 0 && enemy["hp"] > 0){
-        var fightt = readlinesync.question("Type 1 for you and the kid strike with your current weapons or type 2 to run away or type 3 to use an item")
-        while (fightt !=="1" && fightt !=="2" && fightt !== "3"){
+        var fightt = readlinesync.question("Type 1 for you and the kid strike with your current weapons or type 2 to run away")
+        while (fightt !=="1" && fightt !=="2"){
           var fightt = readlinesync.question("1 for you and the kid to strike with your current weapon or type 2 to run away")
         }
       
@@ -1766,14 +1776,11 @@ async function combt2(){
           var damage = randomNumber(Number(chosenitem.mindamage), Number(chosenitem.maxdamage))*Number(baseplayer.attack)
           *randomNumber(2,4)
           var thekiddamage = randomNumber(Number(itemsdetails["mace"].mindamage), Number(itemsdetails["mace"].maxdamage) * Number(thekid.attack) * randomNumber(2,3))
-          console.log(damage)
-          console.log(thekiddamage)
           enemy["hp"] = enemy["hp"] - damage
           enemy["hp"] = enemy["hp"] - thekiddamage
           console.log("You did " + damage + " to the " + enemy["name"] + "!")
           console.log("The kid did " + damage + " to the " + enemy["name"] + "!")
           enemydamage = Math.ceil(enemy["attack"]  * 0.8 * enemy["attack"] * randomNumber(0,3))
-          console.log(enemydamage)
           if (enemy["hp"] > 0){
             player["hp"] = player["hp"] - enemydamage
       
@@ -1787,6 +1794,7 @@ async function combt2(){
             var plusmoney = randomNumber(enemy["mingold"], enemy["maxgold"])
             player["money"] = player["money"] + 
             console.log("You found " + plusmoney + " in the dead " + enemy["name"] +"'s body!")
+              await characterstats()
           }
           if (player["hp"]< 1){
             console.log("You lost. The " + enemy["name"] + " continues it's rampage.")
@@ -1801,39 +1809,36 @@ async function combt2(){
             if (death === "2"){
               player =  createEnemy(playercopy)
               enemy = createEnemy(enemycopy)
-
+              return combt2(false)
 
             }
           }
         }
         if (fightt === "2"){
           console.log("You run away.")
+          return
       
         }
-        if (fightt === "3"){
-        for (var i = 0; i < player["items"].length; i++) {
-        console.log(i + " - " + player["items"][i])
-        }
-        var askitem = readlinesync.question("Would you like to use any of these items?")
-        console.log(askitem)
-        var itemkey = player["items"][Number(askitem)]
-       console.log(itemkey)
-        var chosenitem = itemsdetails[itemkey]
-        console.log(chosenitem)
-        if(chosenitem.healing <= 0){
-          console.log("Please choose a different item.")
-          var askitem = readlinesync.question("Would you like to use any of these items?")
-          console.log(askitem)
+      //   var askitem = readlinesync.question("Would you like to use any of these items?")
+      //   console.log(askitem)
+      //   var itemkey = player["items"][Number(askitem)]
+      //  console.log(itemkey)
+      //   var chosenitem = itemsdetails[itemkey]
+      //   console.log(chosenitem)
+      //   if(chosenitem.healing <= 0){
+      //     console.log("Please choose a different item.")
+      //     var askitem = readlinesync.question("Would you like to use any of these items?")
+      //     console.log(askitem)
           
-        }
-        else{
-          console.log("You used the " + askitem + ".")
-          player["hp"] = player["hp"] + askitem.healing
-        }
+      //   }
+      //   else{
+      //     console.log("You used the " + askitem + ".")
+      //     player["hp"] = player["hp"] + askitem.healing
+      //   }
         
 
         
-        }
+      //   }
         
 
     }
@@ -1842,10 +1847,10 @@ async function combt2(){
     }
     if (fight === "no"){
       console.log("You run away.")
-      console.log()
+      return
     }
   }
-  
+  await characterstats()
 }
 
 
@@ -1860,7 +1865,6 @@ async function combt3(enemyType = null){
     enemy = createEnemy(enemyType)
   }
   
-  console.log(enemy)
   var fighttt = "1"
   while (fighttt === "1"){
     fighttt = "0"
@@ -1873,25 +1877,29 @@ async function combt3(enemyType = null){
     }
     if (fight === "yes"){
       console.log("The fight begins.")
-      
+      await enemystats(enemy)
     
       console.log("You lunge into battle.")
       
+      var options = []
       for (var i = 0; i < player["items"].length; i++) {
+        options.push(i)
         console.log(i + " - " + player["items"][i])
       }
       var askitem = readlinesync.question("Would you like to use any of these items?")
-      console.log(askitem)
+
+
       // choose 0, 1, or 2 - index
+      while (!(Number(askitem) in options) || askitem === ""){
+      var askitem = readlinesync.question("Which item would you like to use?")
+      }
       var itemkey = player["items"][Number(askitem)]
       console.log(itemkey)
       var chosenitem = itemsdetails[itemkey]
-      console.log(chosenitem)
-      console.log(player["hp"])
-      console.log(enemy["hp"])
+
       while (player["hp"] > 0 && enemy["hp"] > 0){
-        var fightt = readlinesync.question("Type 1 for you and the kid strike with your current weapons or type 2 to run away or type 3 to use an item")
-        while (fightt !=="1" && fightt !=="2" && fightt !== "3"){
+        var fightt = readlinesync.question("Type 1 for you and the kid strike with your current weapons or type 2 to run away")
+        while (fightt !=="1" && fightt !=="2"){
           var fightt = readlinesync.question("1 for you and the kid to strike with your current weapon or type 2 to run away")
         }
       
@@ -1900,14 +1908,11 @@ async function combt3(enemyType = null){
           var damage = randomNumber(Number(chosenitem.mindamage), Number(chosenitem.maxdamage))*Number(baseplayer.attack)
           *randomNumber(2,4)
           var thekiddamage = randomNumber(Number(itemsdetails["mace"].mindamage), Number(itemsdetails["mace"].maxdamage) * Number(thekid.attack) * randomNumber(2,3))
-          console.log(damage)
-          console.log(thekiddamage)
           enemy["hp"] = enemy["hp"] - damage
           enemy["hp"] = enemy["hp"] - thekiddamage
           console.log("You did " + damage + " to the " + enemy["name"] + "!")
           console.log("The kid did " + damage + " to the " + enemy["name"] + "!")
           enemydamage = Math.ceil(enemy["attack"]  * 0.8 * enemy["attack"] * randomNumber(0,3))
-          console.log(enemydamage)
           if (enemy["hp"] > 0){
             player["hp"] = player["hp"] - enemydamage
       
@@ -1921,6 +1926,7 @@ async function combt3(enemyType = null){
             var plusmoney = randomNumber(enemy["mingold"], enemy["maxgold"])
             player["money"] = player["money"] + 
             console.log("You found " + plusmoney + " in the dead " + enemy["name"] +"'s body!")
+            await characterstats()
           }
           if (player["hp"]< 1){
             console.log("You lost. The " + enemy["name"] + " continues it's rampage.")
@@ -1935,6 +1941,7 @@ async function combt3(enemyType = null){
             if (death === "2"){
               player =  createEnemy(playercopy)
               enemy = createEnemy(enemycopy)
+              return
 
 
             }
@@ -1942,33 +1949,29 @@ async function combt3(enemyType = null){
         }
         if (fightt === "2"){
           console.log("You run away.")
-          return combt(false)
-      
+          return 
         }
-        if (fightt === "3"){
-        for (var i = 0; i < player["items"].length; i++) {
-        console.log(i + " - " + player["items"][i])
-        }
-        var askitem = readlinesync.question("Would you like to use any of these items?")
-        console.log(askitem)
-        var itemkey = player["items"][Number(askitem)]
-       console.log(itemkey)
-        var chosenitem = itemsdetails[itemkey]
-        console.log(chosenitem)
-        if(chosenitem.healing <= 0){
-          console.log("Please choose a different item.")
-          var askitem = readlinesync.question("Would you like to use any of these items?")
-          console.log(askitem)
+      //   }
+      //   var askitem = readlinesync.question("Would you like to use any of these items?")
+      //   console.log(askitem)
+      //   var itemkey = player["items"][Number(askitem)]
+      //  console.log(itemkey)
+      //   var chosenitem = itemsdetails[itemkey]
+      //   console.log(chosenitem)
+      //   if(chosenitem.healing <= 0){
+      //     console.log("Please choose a different item.")
+      //     var askitem = readlinesync.question("Would you like to use any of these items?")
+      //     console.log(askitem)
           
-        }
-        else{
-          console.log("You used the " + askitem + ".")
-          player["hp"] = player["hp"] + askitem.healing
-        }
+      //   }
+      //   else{
+      //     console.log("You used the " + askitem + ".")
+      //     player["hp"] = player["hp"] + askitem.healing
+      //   }
         
 
         
-        }
+        // }
         
 
     }
@@ -1977,10 +1980,10 @@ async function combt3(enemyType = null){
     }
     if (fight === "no"){
       console.log("You run away.")
-      console.log()
+      return
     }
   }
-  
+  await characterstats()
 }
 
 
@@ -1992,22 +1995,31 @@ function createEnemy(enemy) {
 
 function randomenemy() {
   var enemynames = Object.keys(enemies)
-  console.log(enemynames)
   var enemycount = enemynames.length-1
-  console.log(enemycount)
   
   var enemyrange = randomNumber(0, enemycount)
-  console.log(enemyrange)
-  console.log(enemynames[enemyrange])
-  console.log(enemies[enemynames[enemyrange]])
   var enemy = enemies[enemynames[enemyrange]]
   
+
   // Return actual random enemy
   // return createEnemy(enemies[enemynames[enemyrange]])
 
   // TESTING - return specific enemy
   return createEnemy(enemy)
   
+}
+async function enemystats(enemy){
+  console.log(".")
+  console.log(".")
+  console.log(".")
+  console.log(".")
+  console.log("The " + enemy["name"] + " has " + enemy["hp"] + " health.")
+  console.log("The " + enemy["name"] + " has " + enemy["attack"] + " attack.")
+  console.log("The " + enemy["name"] + " is worth at least " + enemy["mingold"] + " shells and at most " + enemy["maxgold"] + " shells.")
+  console.log(".")
+  console.log(".")
+  console.log(".")
+  console.log(".")
 }
 
 // __COMPLETED__
